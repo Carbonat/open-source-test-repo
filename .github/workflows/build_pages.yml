@@ -1,0 +1,29 @@
+name: Build and Deploy AsciiDoc Docs to GitHub Pages
+
+on:
+  push:
+    branches: [main]  # or your default branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Asciidoctor
+        run: sudo apt-get update && sudo apt-get install -y asciidoctor
+
+      - name: Convert AsciiDoc to HTML
+        run: |
+          asciidoctor -o docs/index.html docs/main.asciidoc
+
+# WRONG: no need to add the deployment step if the file to deploy is docs/index.html and is set in the repository Settings
+# CORRECT: the old docs/index.html is deployed, not the one that was converted from docs/main.asciidoc
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          force_orphan: true      # without it there will be an error "fatal: Remote branch gh-pages not found in upstream origin"
