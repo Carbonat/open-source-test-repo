@@ -1,0 +1,117 @@
+= TodoApp Documentation
+:revnumber: 1.0
+:author: Your Name
+:date: 2025-06-15
+:toc: macro
+:toclevels: 3
+:sectnums:
+
+== Introduction
+
+TodoApp is a simple command-line application for managing your tasks. It allows you to add, list, complete, and delete todos with ease.
+
+== Features
+
+* Add new tasks with due dates and priorities
+* List all tasks or filter by status, priority, or due date
+* Mark tasks as completed or pending
+* Delete tasks
+* Persistent storage using a local JSON file
+
+== Installation
+
+=== Prerequisites
+
+* Java 11+ or Python 3.8+ (depending on implementation)
+* Git
+
+=== Steps
+
+[source,bash]
+----
+$ git clone https://github.com/yourusername/todoapp.git
+$ cd todoapp
+$ ./install.sh    // or pip install -r requirements.txt
+----
+
+== Usage
+
+[source,bash]
+----
+$ todoapp add "Buy groceries" --due 2025-06-20 --priority high
+$ todoapp list --status pending
+$ todoapp done 3
+$ todoapp delete 4
+----
+
+== Command Reference
+
+=== Add a Task
+
+Adds a new task to your todo list.
+
+[options="header",cols="1,1,3"]
+|===
+|Option |Short |Description
+|--due | -d |Due date in YYYY-MM-DD
+|--priority | -p |Priority level: low, medium, high
+|===
+
+[source,bash]
+----
+$ todoapp add "Finish report" --due 2025-06-18 --priority medium
+----
+
+=== List Tasks
+
+List tasks with optional filters.
+
+[options="header",cols="1,2,3"]
+|===
+|Filter |Short |Description
+|--status | -s |Filter by status: pending, done
+|--priority | -p |Filter by priority
+|--due-before |   |Show tasks due before given date
+|===
+
+[source,bash]
+----
+$ todoapp list --status done
+----
+
+=== Mark Task Done
+
+Marks a task as completed.
+
+[source,bash]
+----
+$ todoapp done <task_id>
+----
+
+=== Delete Task
+
+Deletes a task permanently.
+
+[source,bash]
+----
+$ todoapp delete <task_id>
+----
+
+== Configuration
+
+By default, tasks are stored in `~/.todoapp/tasks.json`. You can override this by setting the `TODOAPP_DATA_PATH` environment variable.
+
+[source,bash]
+----
+$ export TODOAPP_DATA_PATH="/custom/path/tasks.json"
+----
+
+== Contributing
+
+Contributions are welcome! Please follow these steps:
+
+. Fork the repository
+. Create a feature branch (`git checkout -b feature/awesome-feature`)
+. Commit your changes (`git commit -m "Add awesome feature"`)
+. Push to the branch (`git push origin feature/awesome-feature`)
+. Open a Pull Request
