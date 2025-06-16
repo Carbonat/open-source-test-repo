@@ -12,12 +12,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Asciidoctor
-        run: sudo apt-get update && sudo apt-get install -y asciidoctor
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 'head'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install asciidoctor
+          gem install asciidoctor-multipage
 
       - name: Convert AsciiDoc to HTML
         run: |
-          asciidoctor -o docs/index.html docs/main.adoc
+          asciidoctor -r asciidoctor-multipage -b multipage_html5 -o docs/index.html docs/main.adoc
 
 # WRONG: no need to add the deployment step if the file to deploy is docs/index.html and is set in the repository Settings
 # CORRECT: the old docs/index.html is deployed, not the one that was converted from docs/main.asciidoc
