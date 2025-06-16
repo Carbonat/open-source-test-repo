@@ -1,0 +1,45 @@
+= Configuration
+:revnumber: 1.0
+
+TodoApp can be configured via environment variables or a configuration file.
+
+== Data Storage Path
+
+The location of the tasks JSON file. Default: `~/.todoapp/tasks.json`
+
+[source,bash]
+----
+$ export TODOAPP_DATA_PATH="/path/to/tasks.json"
+----
+
+== Log Level
+
+Set the log verbosity: `debug`, `info`, `warn`, `error`. Default: `info`
+
+[source,bash]
+----
+$ export TODOAPP_LOG_LEVEL="debug"
+----
+
+== Default Priority
+
+Configure the default priority for new tasks: `low`, `medium`, `high`. Default: `medium`
+
+[source,bash]
+----
+$ export TODOAPP_DEFAULT_PRIORITY="medium"
+----
+
+== Configuration File
+
+You can also create a YAML config file at `~/.todoapp/config.yml`:
+
+[source,yaml]
+----
+data_path: "/custom/path/tasks.json"
+log_level: "info"
+default_priority: "high"
+----
+
+(Note: CLI flags override config file settings.)
+

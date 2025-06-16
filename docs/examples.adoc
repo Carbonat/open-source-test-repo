@@ -1,0 +1,47 @@
+= Examples
+:revnumber: 1.0
+
+== Examples
+
+=== Adding Tasks
+
+[source,bash]
+----
+$ todoapp add "Write unit tests" --due 2025-06-21 --priority medium
+----
+
+=== Listing by Priority
+
+[source,bash]
+----
+$ todoapp list --priority high
+----
+
+=== Filtering by Due Date
+
+[source,bash]
+----
+$ todoapp list --due-before 2025-06-25
+----
+
+=== Marking Completed
+
+[source,bash]
+----
+$ todoapp done 5
+----
+
+=== Deleting Tasks
+
+[source,bash]
+----
+$ todoapp delete 3
+----
+
+=== Custom Data Path
+
+[source,bash]
+----
+$ TODOAPP_DATA_PATH="/tmp/tasks.json" todoapp list
+----
+

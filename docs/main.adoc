@@ -99,12 +99,11 @@ $ todoapp delete <task_id>
 
 == Configuration
 
-By default, tasks are stored in `~/.todoapp/tasks.json`. You can override this by setting the `TODOAPP_DATA_PATH` environment variable.
+include::configuration.adoc[]
 
-[source,bash]
-----
-$ export TODOAPP_DATA_PATH="/custom/path/tasks.json"
-----
+== Examples
+
+include::examples.adoc[]
 
 == Contributing
 

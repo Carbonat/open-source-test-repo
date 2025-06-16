@@ -17,7 +17,7 @@ jobs:
 
       - name: Convert AsciiDoc to HTML
         run: |
-          asciidoctor -o docs/index.html docs/main.asciidoc
+          asciidoctor -o docs/index.html docs/main.adoc
 
 # WRONG: no need to add the deployment step if the file to deploy is docs/index.html and is set in the repository Settings
 # CORRECT: the old docs/index.html is deployed, not the one that was converted from docs/main.asciidoc
