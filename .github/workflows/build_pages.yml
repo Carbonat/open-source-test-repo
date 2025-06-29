@@ -25,7 +25,10 @@ jobs:
 
       - name: Convert AsciiDoc to HTML
         run: |
-          asciidoctor -r asciidoctor-multipage -b multipage_html5 -o docs/index.html docs/main.adoc
+          cd docs
+          mkdir public
+          
+          asciidoctor -r asciidoctor-multipage -b multipage_html5 -o public/index.html main.adoc
 
 # WRONG: no need to add the deployment step if the file to deploy is docs/index.html and is set in the repository Settings
 # CORRECT: the old docs/index.html is deployed, not the one that was converted from docs/main.asciidoc
@@ -33,5 +36,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./docs/public
           force_orphan: true      # without it there will be an error "fatal: Remote branch gh-pages not found in upstream origin"
